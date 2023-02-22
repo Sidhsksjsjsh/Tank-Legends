@@ -30,6 +30,11 @@ local Main = ui:new("Farm")
 local Egg = ui:new("Hatch")
 local Unlock = ui:new("Unlock World")
 
+Main:Ping()
+Main:FPS()
+Main:TimePlayed()
+Main:UTC()
+
 local farmType
 local AreaType
 local HatchEgg = ""
@@ -48,7 +53,7 @@ Main:CreateToggle("Farm", false, function(_)
        while wait() do
         if TogglesFarm == false then break end
 local args = {
-    [1] = workspace.__AREAS.AreaType.farmType,
+    [1] = workspace.__AREAS .. "." .. AreaType .. "." .. farmType,
     [2] = workspace.__CLIENT.__PLAYER.Rivanda_Cheater:FindFirstChild("Normal Tank")
 }
 
@@ -60,8 +65,7 @@ Unlock:CreateDropdown("Select Area", AreaTable, function(_)
       AreaUnlock = _
 end)
 
-Unlock:CreateButton("Unlock Teleport", function()
-     TurtleTeleport(workspace.__AREAS.AreaUnlock)
+Unlock:CreateButton("Unlock world", function()
       local args = {
     [1] = AreaUnlock
 }
