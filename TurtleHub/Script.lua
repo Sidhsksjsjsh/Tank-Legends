@@ -3,6 +3,7 @@ local ui = Library:CreateWindow()
 
 local FarmTable = {}
 local AreaTable = {}
+local EggTable = {}
 
 for _,Client in pairs(game:GetService("Workspace").__AREAS.Spawn:GetChildren()) do
     table.insert(FarmTable, Client.Name)
@@ -12,9 +13,22 @@ for _,ClientArea in pairs(game:GetService("Workspace").__AREAS:GetChildren()) do
     table.insert(AreaTable, ClientArea.Name)
 end
 
+for _,Nigga in pairs(game:GetService("Workspace").__EGGS:GetChildren()) do
+    table.insert(EggTable, Nigga.Name)
+end
 
+function TurtleTeleport(WorkspaceObject)
+local pos = CFrame.new(WorkspaceObject)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end
+
+function TurtleWalkTeleport(WorkspaceObject_2)
+game.Players.LocalPlayer.Humanoid:MoveTo(WorkspaceObject_2)
+end
 
 local Main = ui:new("Farm")
+local Egg = ui:new("Hatch")
+local Unlock = ui:new("Unlock World")
 
 Main:CreateDropdown("Select Farm", FarmTable, function(_)
       farmType = _
@@ -35,5 +49,40 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").__REMOTES.__Cannon_Attack:FireServer(unpack(args))
+end
+end)
+
+Unlock:CreateDropdown("Select Area", AreaTable, function(_)
+      AreaUnlock = _
+end)
+
+Unlock:CreateButton("Unlock Teleport", function()
+     TurtleTeleport(workspace.__AREAS.AreaUnlock)
+      local args = {
+    [1] = AreaUnlock
+}
+
+game:GetService("ReplicatedStorage").__REMOTES.__Area:FireServer(unpack(args))
+end)
+
+Egg:CreateDropdown("Select Egg", EggTable, function(_)
+      HatchEgg = _
+end)
+
+Egg:CreateToggle("Hatch", false, function(_)
+     TogglesHatch = _
+  
+       while wait() do
+        if TogglesHatch == false then break end
+local args = {
+    [1] = 1,
+    [2] = HatchEgg,
+    [3] = false,
+    [4] = false,
+    [5] = false,
+    [6] = false
+}
+
+game:GetService("ReplicatedStorage").__REMOTES.__Buy_EGG:FireServer(unpack(args))
 end
 end)
