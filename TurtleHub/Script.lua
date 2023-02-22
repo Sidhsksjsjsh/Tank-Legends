@@ -30,6 +30,10 @@ local Main = ui:new("Farm")
 local Egg = ui:new("Hatch")
 local Unlock = ui:new("Unlock World")
 
+local farmType
+local AreaType
+local HatchEgg = ""
+
 Main:CreateDropdown("Select Farm", FarmTable, function(_)
       farmType = _
 end)
