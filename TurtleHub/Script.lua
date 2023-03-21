@@ -96,18 +96,20 @@ Options = AreaTable,
 Callback = function(_)
       AreaUnlock = _
 end
-   
-        
-    
-    )
+})
 
-Unlock:CreateButton("Unlock world", function()
+Unlock:AddButton({
+Name = "Unlock World",
+Callback = function()
       local args = {
     [1] = AreaUnlock
 }
 
 game:GetService("ReplicatedStorage").__REMOTES.__Area:FireServer(unpack(args))
-end)
+end
+   
+    
+    )
 
 Egg:CreateDropdown("Select Egg", EggTable, function(_)
       HatchEgg = _
