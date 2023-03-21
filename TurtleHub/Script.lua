@@ -87,13 +87,19 @@ local args = {
 game:GetService("ReplicatedStorage").__REMOTES.__Cannon_Attack:FireServer(unpack(args))
 end
 end
-    
+})
+
+Unlock:AddDropdown({
+Name = "Select Area",
+Default = "",
+Options = AreaTable,
+Callback = function(_)
+      AreaUnlock = _
+end
+   
+        
     
     )
-
-Unlock:CreateDropdown("Select Area", AreaTable, function(_)
-      AreaUnlock = _
-end)
 
 Unlock:CreateButton("Unlock world", function()
       local args = {
