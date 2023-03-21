@@ -53,16 +53,28 @@ local farmType
 local AreaType
 local HatchEgg = ""
 
-Main:CreateDropdown("Select Farm", FarmTable, function(_)
-        
+Main:AddDropdown({
+Name = "Farm Type",
+Default = "",
+Options = FarmTable,
+Callback = function(_)
       farmType = _
-end)
+end
+})
 
-Main:CreateDropdown("Select Area", AreaTable, function(_)
+Main:AddDropdown({
+Name = "Select Area",
+Default = "",
+Options = AreaTable,
+Callback = function(_)
       AreaType = _
-end)
+end
+})
 
-Main:CreateToggle("Farm", false, function(_)
+Main:AddToggle({
+Name = "Farm",
+Default = false,
+Callback = function(_)
      TogglesFarm = _
   
        while wait() do
@@ -74,7 +86,10 @@ local args = {
 
 game:GetService("ReplicatedStorage").__REMOTES.__Cannon_Attack:FireServer(unpack(args))
 end
-end)
+end
+    
+    
+    )
 
 Unlock:CreateDropdown("Select Area", AreaTable, function(_)
       AreaUnlock = _
