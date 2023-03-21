@@ -1,5 +1,6 @@
-local Library = loadstring(game:HttpGet("https://pastebin.com/raw/aC8GQEKE"))()
-local ui = Library:CreateWindow()
+local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/NMEHkVTb"))()
+
+local Window = OrionLib:MakeWindow({Name = "VIP Turtle Hub V3", HidePremium = false, SaveConfig = true, ConfigFolder = "TurtleFi"})
 
 local FarmTable = {}
 local AreaTable = {}
@@ -26,20 +27,34 @@ function TurtleWalkTeleport(WorkspaceObject_2)
 game.Players.LocalPlayer.Humanoid:MoveTo(WorkspaceObject_2)
 end
 
-local Main = ui:new("Farm")
-local Egg = ui:new("Hatch")
-local Unlock = ui:new("Unlock World")
 
-Main:Ping()
-Main:FPS()
-Main:TimePlayed()
-Main:UTC()
+local Main = Window:MakeTab({
+Name = "Farm",
+Icon = "rbxassetid://",
+PremiumOnly = false
+})
+
+
+local Egg = Window:MakeTab({
+Name = "Hatch",
+Icon = "rbxassetid://4483345998",
+PremiumOnly = false
+})
+
+
+local Unlock = Window:MakeTab({
+Name = "Unlock World",
+Icon = "rbxassetid://4483345998",
+PremiumOnly = false
+})
+
 
 local farmType
 local AreaType
 local HatchEgg = ""
 
 Main:CreateDropdown("Select Farm", FarmTable, function(_)
+        
       farmType = _
 end)
 
@@ -53,7 +68,7 @@ Main:CreateToggle("Farm", false, function(_)
        while wait() do
         if TogglesFarm == false then break end
 local args = {
-    [1] = workspace.__AREAS .. "." .. AreaType .. "." .. farmType,
+    [1] = workspace.__AREAS[AreaType][farmType],
     [2] = workspace.__CLIENT.__PLAYER.Rivanda_Cheater:FindFirstChild("Normal Tank")
 }
 
