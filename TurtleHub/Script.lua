@@ -107,15 +107,21 @@ Callback = function()
 
 game:GetService("ReplicatedStorage").__REMOTES.__Area:FireServer(unpack(args))
 end
-   
-    
+})
+
+Egg:AddDropdown({
+Name = "Select Egg",
+Default = "",
+Options = EggTable,
+Callback = function(_)
+      HatchEgg = _
+end
     )
 
-Egg:CreateDropdown("Select Egg", EggTable, function(_)
-      HatchEgg = _
-end)
-
-Egg:CreateToggle("Hatch", false, function(_)
+Tab:AddToggle({
+Name = "This is a toggle!",
+Default = false,
+Callback = function(Value)
      TogglesHatch = _
   
        while wait() do
@@ -131,4 +137,5 @@ local args = {
 
 game:GetService("ReplicatedStorage").__REMOTES.__Buy_EGG:FireServer(unpack(args))
 end
-end)
+end
+    )
