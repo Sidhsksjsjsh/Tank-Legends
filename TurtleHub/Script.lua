@@ -116,12 +116,12 @@ Options = EggTable,
 Callback = function(_)
       HatchEgg = _
 end
-    )
+})
 
-Tab:AddToggle({
-Name = "This is a toggle!",
+Egg:AddToggle({
+Name = "Hatch",
 Default = false,
-Callback = function(Value)
+Callback = function(_)
      TogglesHatch = _
   
        while wait() do
@@ -138,4 +138,4 @@ local args = {
 game:GetService("ReplicatedStorage").__REMOTES.__Buy_EGG:FireServer(unpack(args))
 end
 end
-    )
+})
